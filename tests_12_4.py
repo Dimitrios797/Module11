@@ -1,10 +1,9 @@
-# tests_12_4.py
+
 import logging
 import unittest
-import traceback  # Импортируем модуль для получения трассировки
-from runner import Runner  # Импортируем класс Runner
+import traceback
+from runner import Runner
 
-# Настройка логирования
 logging.basicConfig(
     level=logging.INFO,
     filename='runner_tests.log',
@@ -18,11 +17,11 @@ class RunnerTest(unittest.TestCase):
 
     def test_walk(self):
         try:
-            # Попытка создать объект Runner с отрицательной скоростью
+
             runner = Runner("Вася", -5)
         except ValueError as e:
             logging.warning("Неверная скорость для Runner")
-            logging.error(traceback.format_exc())  # Записываем трассировку ошибки
+            logging.error(traceback.format_exc())
             self.assertEqual(str(e), "Скорость не может быть отрицательной, сейчас -5")
         else:
             logging.info('"test_walk" выполнен успешно')
@@ -30,11 +29,11 @@ class RunnerTest(unittest.TestCase):
 
     def test_run(self):
         try:
-            # Попытка создать объект Runner с неверным типом для имени
-            runner = Runner(123, 10)  # Передаем число вместо строки
+
+            runner = Runner(123, 10)
         except TypeError as e:
             logging.warning("Неверный тип данных для объекта Runner")
-            logging.error(traceback.format_exc())  # Записываем трассировку ошибки
+            logging.error(traceback.format_exc())
             self.assertEqual(str(e), "Имя может быть только строкой, передано int")
         else:
             logging.info('"test_run" выполнен успешно')
